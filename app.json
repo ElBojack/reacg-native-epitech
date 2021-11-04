@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "react-native-epitech",
+    "slug": "react-native-epitech",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "react-native-epitech"
+}
