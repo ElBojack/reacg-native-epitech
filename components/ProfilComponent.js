@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/core';
 import React from 'react';
+import { useNavigation } from '@react-navigation/core';
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import { getAuth } from 'firebase/auth';
 
 import app from '../firebase';
 
-const HomeScreen = () => {
+const ProfilComponent = () => {
   const navigation = useNavigation();
 
   const auth = getAuth(app);
@@ -62,4 +62,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default ProfilComponent;

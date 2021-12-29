@@ -7,7 +7,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 
 import app from '../firebase';
 
-const LoginScreen = () => {
+const LoginAndRegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -128,4 +128,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default LoginAndRegisterPage;
