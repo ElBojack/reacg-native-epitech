@@ -3,14 +3,17 @@ import React, { useEffect, useState } from 'react';
 import {
   KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,
 } from 'react-native';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import { connect, useDispatch } from 'react-redux';
 
 import app from '../firebase';
+import { login, register } from '../redux/actions/auth';
 
 const LoginAndRegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const auth = getAuth(app);
 
@@ -25,21 +28,11 @@ const LoginAndRegisterPage = () => {
   }, [auth, navigation]);
 
   const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const { user } = userCredentials;
-        console.log('Registered with:', user.email);
-      })
-      .catch((error) => alert(error.message));
+    dispatch(register(auth, email, password));
   };
 
   const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const { user } = userCredentials;
-        console.log('Logged in with:', user.email);
-      })
-      .catch((error) => alert(error.message));
+    dispatch(login(auth, email, password));
   };
 
   const styles = StyleSheet.create({
@@ -128,4 +121,10 @@ const LoginAndRegisterPage = () => {
   );
 };
 
-export default LoginAndRegisterPage;
+const Login = connect(
+  (state) => ({
+    isAuth: state.auth.isLoggedIn,
+  }),
+)(LoginAndRegisterPage);
+
+export default Login;
